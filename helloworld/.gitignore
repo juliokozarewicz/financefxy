@@ -37,5 +37,4 @@ out/
 .vscode/
 
 ### Others ###
-*/src/main/resources/logs/logfile.log
-*/src/main/resources/logs/logfile.*.gz
+logfile.*
