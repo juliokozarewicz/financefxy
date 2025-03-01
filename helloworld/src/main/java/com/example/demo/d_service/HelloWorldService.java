@@ -1,6 +1,6 @@
 package com.example.demo.d_service;
 
-import com.example.demo.utils.dtos.StandardResponse;
+import com.example.demo.utils.others.StandardResponse;
 import com.example.demo.utils.others.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
