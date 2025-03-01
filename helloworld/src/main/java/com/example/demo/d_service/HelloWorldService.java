@@ -1,6 +1,7 @@
 package com.example.demo.d_service;
 
 import com.example.demo.utils.dtos.StandardResponse;
+import com.example.demo.utils.others.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -17,6 +18,10 @@ public class HelloWorldService {
     // locale
     @Autowired
     private MessageSource messageSource;
+
+    //email #####
+    @Autowired
+    private EmailService emailService;
 
     public ResponseEntity execute(
         String message
