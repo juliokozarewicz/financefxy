@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.utils.EncryptionControl;
 import com.example.demo.utils.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,6 +22,15 @@ public class HelloWorldService {
     public ResponseEntity execute(
         String message
     ) {
+
+        // test
+        EncryptionControl encryptionControl = new EncryptionControl();
+        String plainText = "Hello, World! kkkk";
+        System.out.println(plainText);
+        String encryptedText = encryptionControl.encrypt(plainText);
+        System.out.println(encryptedText);
+        String decryptedText = encryptionControl.decrypt(encryptedText);
+        System.out.println(decryptedText);
 
         // language
         Locale locale = LocaleContextHolder.getLocale();
