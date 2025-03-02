@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.utils.DocumentationJson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
@@ -16,14 +17,16 @@ class DocumentationController {
     @Value("${APPLICATION_TITLE}")
     private String applicationTitle;
 
+    @Autowired
+    private DocumentationJson documentationJson;
+
     @GetMapping(
         value = "/documentation/json",
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Object> handle() {
 
-        DocumentationJson documentationJson = new DocumentationJson();
-        String docs = documentationJson.documentationText(applicationTitle);
+        String docs = documentationJson.documentationText();
 
         return ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)

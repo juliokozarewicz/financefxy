@@ -1,12 +1,15 @@
 package com.example.demo.utils;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-
-@ConfigurationProperties(prefix = "application")
+@Component
 public class DocumentationJson {
 
-    public String documentationText(String applicationTitle) {
+    @Value("${APPLICATION_TITLE}")
+    private String applicationTitle;
+
+    public String documentationText() {
 
         String docs = """
         
