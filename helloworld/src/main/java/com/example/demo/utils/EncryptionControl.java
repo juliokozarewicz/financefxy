@@ -2,8 +2,6 @@ package com.example.demo.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import javax.crypto.Cipher;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
@@ -14,7 +12,6 @@ import java.util.Base64;
 
 @Component
 public class EncryptionControl {
-
 
     @Value("${PUBLIC_KEY}")
     private String publicKey;
