@@ -19,7 +19,7 @@ class HelloWorldController {
     @Autowired
     private HelloWorldService helloWorldService;
 
-    @GetMapping("${BASE_URL_HELLOWORLD:default}/helloworld")
+    @GetMapping("${BASE_URL_HELLOWORLD}/helloworld")
     public ResponseEntity handle(
 
         // validations errors
