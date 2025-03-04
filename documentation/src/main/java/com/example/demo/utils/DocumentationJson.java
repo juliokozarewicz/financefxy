@@ -93,6 +93,136 @@ public class DocumentationJson {
                             }
                         }
                     },
+
+                    # CATEGORY
+                    # ==========================================================
+                    "/finance/category/create": {
+                        "post": {
+                            "summary": "Create a new category",
+                            "description": "Creates a new category in the system. If the category already exists, a conflict error is returned.",
+                            "tags": [
+                                "CATEGORY"
+                            ],
+                            "requestBody": {
+                                "required": true,
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "categoryName": {
+                                                    "type": "string",
+                                                    "example": "New Category",
+                                                    "description": "The name of the category to be created. Should be non-empty and not exceed 100 characters."
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "responses": {
+                                "201": {
+                                    "description": "Category created successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 201
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Category created successfully."
+                                                    },
+                                                    "meta": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idCreated": {
+                                                                "type": "string",
+                                                                "example": "9b750213-c560-4766-a1e7-14303f84a14f"
+                                                            }
+                                                        }
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/create"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/list"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "409": {
+                                    "description": "Conflict: Category already exists.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 409
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "This category already exists."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "400": {
+                                    "description": "Bad Request: Category name cannot be empty.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 400
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "field": {
+                                                        "type": "string",
+                                                        "example": "categoryName"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Cannot be empty."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    # ==========================================================
                     # ==========================================================
 
                 }
