@@ -143,8 +143,8 @@ http {
 
     # HELLO WORLD
     # ===================================================
-    # [ HELLO WORLD - Helloworld ]
-        location /helloworld/helloworld {
+    # [ HELLO WORLD - Static files ]
+        location /helloworld/static {
           proxy_pass http://$PRIVATE_DOMAIN:$HELLOWORLD_PORT;
           proxy_set_header Host host;
           proxy_set_header X-Real-IP remote_addr;
@@ -153,7 +153,7 @@ http {
         }
 
     # [ HELLO WORLD - Helloworld ]
-        location /helloworld/static {
+        location /helloworld/helloworld {
           proxy_pass http://$PRIVATE_DOMAIN:$HELLOWORLD_PORT;
           proxy_set_header Host host;
           proxy_set_header X-Real-IP remote_addr;
@@ -161,6 +161,27 @@ http {
           proxy_set_header X-Forwarded-Proto scheme;
         }
     # =================================================== (end hello world)
+
+    # FINANCE
+    # ===================================================
+    # [ FINANCE - Static Files ]
+        location /finance/static {
+          proxy_pass http://$PRIVATE_DOMAIN:$FINANCE_PORT;
+          proxy_set_header Host host;
+          proxy_set_header X-Real-IP remote_addr;
+          proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto scheme;
+        }
+
+    # [ FINANCE - Category Create ]
+        location /finance/category/create {
+          proxy_pass http://$PRIVATE_DOMAIN:$FINANCE_PORT;
+          proxy_set_header Host host;
+          proxy_set_header X-Real-IP remote_addr;
+          proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto scheme;
+        }
+    # =================================================== (end finance)
 
   }
 

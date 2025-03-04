@@ -1,0 +1,7 @@
+services:
+  tasks:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "${FINANCE_PORT}:${FINANCE_PORT}"
