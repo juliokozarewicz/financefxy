@@ -462,6 +462,83 @@ public class DocumentationJson {
                         }
                     },
                     # ==========================================================
+                    "/finance/category/list-all": {
+                        "get": {
+                            "summary": "Get a list of all categories",
+                            "description": "Fetches a list of all categories from the database. The response includes the total number of items, and links for navigation.",
+                            "tags": [
+                                "CATEGORY"
+                            ],
+                            "responses": {
+                                "200": {
+                                    "description": "Categories retrieved successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 200
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Data received successfully."
+                                                    },
+                                                    "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "string",
+                                                                    "example": "850937c9-90e4-4ead-89db-a66a2dee6f2e"
+                                                                },
+                                                                "categoryName": {
+                                                                    "type": "string",
+                                                                    "example": "credit card"
+                                                                }
+                                                            }
+                                                        },
+                                                        "description": "List of all categories."
+                                                    },
+                                                    "meta": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "totalItems": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            }
+                                                        },
+                                                        "description": "Meta information about the response, including the total number of categories."
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/list-all"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/update"
+                                                            }
+                                                        },
+                                                        "description": "Links for navigation."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    # ==========================================================
                     # ==========================================================
                 }
             }
@@ -471,6 +548,5 @@ public class DocumentationJson {
         return docs;
 
     }
-
 
 }

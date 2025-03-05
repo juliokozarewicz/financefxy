@@ -86,7 +86,7 @@ public class CategoryUpdateService {
         // response (json)
         Map<String, String> customLinks = new LinkedHashMap<>();
         customLinks.put("self", "/finance/category/create");
-        customLinks.put("next", "/finance/category/list");
+        customLinks.put("next", "/finance/category/list-all");
 
         StandardResponse response = new StandardResponse.Builder()
             .statusCode(200)
