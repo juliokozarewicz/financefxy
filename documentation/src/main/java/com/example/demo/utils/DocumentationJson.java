@@ -221,10 +221,163 @@ public class DocumentationJson {
                                 }
                             }
                         }
-                    }
+                    },
+                    # ==========================================================
+                    "/finance/category/update/{id}": {
+                        "put": {
+                            "summary": "Update an existing category",
+                            "description": "Updates the category with the specified ID. If the category does not exist, a not found error is returned. If the category name already exists, a conflict error is returned.",
+                            "tags": [
+                                "CATEGORY"
+                            ],
+                            "parameters": [
+                                {
+                                    "name": "id",
+                                    "in": "path",
+                                    "required": true,
+                                    "schema": {
+                                        "type": "string",
+                                        "example": "9b750213-c560-4766-a1e7-14303f84a14f",
+                                        "description": "The UUID of the category to be updated."
+                                    }
+                                }
+                            ],
+                            "requestBody": {
+                                "required": true,
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "categoryName": {
+                                                    "type": "string",
+                                                    "example": "Updated Category",
+                                                    "description": "The new name of the category. Should be non-empty and not exceed 100 characters."
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "responses": {
+                                "200": {
+                                    "description": "Category updated successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 200
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Category updated successfully."
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/update/9b750213-c560-4766-a1e7-14303f84a14f"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/list"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "409": {
+                                    "description": "Conflict: Category already exists.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 409
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "This category already exists."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "404": {
+                                    "description": "Not Found: Category not found.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Category not found."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "400": {
+                                    "description": "Bad Request: Category name cannot be empty.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 400
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "field": {
+                                                        "type": "string",
+                                                        "example": "categoryName"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Cannot be empty."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     # ==========================================================
                     # ==========================================================
-
                 }
             }
         
