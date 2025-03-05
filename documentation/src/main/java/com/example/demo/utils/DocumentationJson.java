@@ -377,6 +377,91 @@ public class DocumentationJson {
                         }
                     },
                     # ==========================================================
+                    "/finance/category/delete/{id}": {
+                        "delete": {
+                            "summary": "Delete an existing category",
+                            "description": "Deletes the category with the specified ID. If the category does not exist, a not found error is returned.",
+                            "tags": [
+                                "CATEGORY"
+                            ],
+                            "parameters": [
+                                {
+                                    "name": "id",
+                                    "in": "path",
+                                    "required": true,
+                                    "schema": {
+                                        "type": "string",
+                                        "example": "9b750213-c560-4766-a1e7-14303f84a14f",
+                                        "description": "The UUID of the category to be deleted."
+                                    }
+                                }
+                            ],
+                            "responses": {
+                                "200": {
+                                    "description": "Category deleted successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 200
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Category deleted successfully."
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/delete/9b750213-c560-4766-a1e7-14303f84a14f"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/category/list"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "404": {
+                                    "description": "Not Found: Category not found.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Category not found."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    # ==========================================================
                     # ==========================================================
                 }
             }
