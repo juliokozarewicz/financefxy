@@ -55,13 +55,34 @@ public class TransactionCreateService {
             );
         }
 
+        // record transaction
+        String generatedUUID = UUID.randomUUID().toString();
+        ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
+        Timestamp nowTimestamp = Timestamp.from(nowUtc.toInstant());
 
+        TransactionEntity newTransaction = TransactionEntity.builder()
+            .id(generatedUUID)
+            .createdAt(nowTimestamp.toLocalDateTime())
+            .updatedAt(nowTimestamp.toLocalDateTime())
+            .transactionName(validatedBody.transactionName())
+            .transactionType(validatedBody.transactionType())
+            .paymentDescription(validatedBody.paymentDescription())
+            .paymentAmount(validatedBody.paymentAmount())
+            .dueDate(validatedBody.dueDate())
+            .payee(validatedBody.payee())
+            .documentNumber(validatedBody.documentNumber())
+            .category(validatedBody.category())
+            .bankAccount(validatedBody.bankAccount())
+            .card(validatedBody.card())
+            .notes(validatedBody.notes())
+            .status(validatedBody.status())
+            .build();
 
-
+        transactionRepository.save(newTransaction);
 
         // response META
         Map<String, Object> metaInfo = new LinkedHashMap<>();
-        metaInfo.put("idCreated", "generatedUUID");
+        metaInfo.put("idCreated", generatedUUID);
 
         // response (json)
         Map<String, String> customLinks = new LinkedHashMap<>();
@@ -73,7 +94,7 @@ public class TransactionCreateService {
             .statusMessage("success")
             .message(
                 messageSource.getMessage(
-                    "transaction_created_success", null, locale
+                     "transaction_created_success", null, locale
                 )
             )
             .meta(metaInfo)

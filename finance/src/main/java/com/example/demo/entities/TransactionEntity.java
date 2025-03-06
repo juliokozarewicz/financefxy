@@ -46,7 +46,7 @@ public class TransactionEntity {
     private BigDecimal paymentAmount;
 
     @Column(name = "due_date", nullable = false)
-    private LocalDate dueDate;
+    private LocalDateTime dueDate;
 
     @Column(name = "payee", length = 250)
     private String payee;

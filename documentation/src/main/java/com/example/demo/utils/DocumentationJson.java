@@ -539,6 +539,179 @@ public class DocumentationJson {
                         }
                     },
                     # ==========================================================
+                    "/finance/transaction/create": {
+                        "post": {
+                            "summary": "Create a new transaction",
+                            "description": "Creates a new transaction in the system. The transaction details are validated before saving in the database. If a transaction with the same name and due date already exists, a conflict error will be returned.",
+                            "tags": [
+                                "TRANSACTION"
+                            ],
+                            "requestBody": {
+                                "required": true,
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "transactionName": {
+                                                    "type": "string",
+                                                    "example": "Service Payment"
+                                                },
+                                                "transactionType": {
+                                                    "type": "string",
+                                                    "example": "Debit"
+                                                },
+                                                "paymentDescription": {
+                                                    "type": "string",
+                                                    "example": "Payment for the service rendered"
+                                                },
+                                                "paymentAmount": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 1000.00
+                                                },
+                                                "dueDate": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-03-10T14:30:00"
+                                                },
+                                                "payee": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "documentNumber": {
+                                                    "type": "string",
+                                                    "example": "1234567890"
+                                                },
+                                                "category": {
+                                                    "type": "string",
+                                                    "example": "Services"
+                                                },
+                                                "bankAccount": {
+                                                    "type": "string",
+                                                    "example": "1234-5"
+                                                },
+                                                "card": {
+                                                    "type": "string",
+                                                    "example": "9876-5432-1098-7654"
+                                                },
+                                                "notes": {
+                                                    "type": "string",
+                                                    "example": "Payment made with discount"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Pending"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "responses": {
+                                "201": {
+                                    "description": "Transaction created successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 201
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Transaction created successfully."
+                                                    },
+                                                    "meta": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "idCreated": {
+                                                                "type": "string",
+                                                                "example": "860a541e-de21-4b4e-b9a8-e49575c82ab0"
+                                                            }
+                                                        },
+                                                        "description": "Meta information about the response, including the transaction ID created."
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/transaction/create"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/transaction/list-all"
+                                                            }
+                                                        },
+                                                        "description": "Links for navigation."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "409": {
+                                    "description": "Transaction already exists.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 409
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "This transaction already exists."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "400": {
+                                    "description": "Bad request (validation error).",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 400
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "field": {
+                                                        "type": "string",
+                                                        "example": "transactionName"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Cannot be empty."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
                     # ==========================================================
                 }
             }
