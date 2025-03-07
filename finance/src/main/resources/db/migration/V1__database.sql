@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     transaction_type VARCHAR(100) DEFAULT 'expense' NOT NULL,
     payment_description VARCHAR(255) NOT NULL,
     payment_amount DECIMAL(18, 2) NOT NULL,
-    due_date TIMESTAMPTZ NOT NULL,
+    due_date DATE NOT NULL,
     payee VARCHAR(250),
     document_number VARCHAR(250),
     category VARCHAR(100) NOT NULL,

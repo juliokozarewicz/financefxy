@@ -42,7 +42,7 @@ public class TransactionCreateService {
         Optional<TransactionEntity> existingTransaction = transactionRepository
             .findByTransactionNameAndDueDate(
                 validatedBody.transactionName(),
-                validatedBody.dueDate()
+                validatedBody.dueDate().toLocalDate()
             );
 
         if (!existingTransaction.isEmpty()) {
@@ -68,7 +68,7 @@ public class TransactionCreateService {
             .transactionType(validatedBody.transactionType())
             .paymentDescription(validatedBody.paymentDescription())
             .paymentAmount(validatedBody.paymentAmount())
-            .dueDate(validatedBody.dueDate())
+            .dueDate(validatedBody.dueDate().toLocalDate())
             .payee(validatedBody.payee())
             .documentNumber(validatedBody.documentNumber())
             .category(validatedBody.category())
