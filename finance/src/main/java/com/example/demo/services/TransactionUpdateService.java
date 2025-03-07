@@ -82,7 +82,7 @@ public class TransactionUpdateService {
         Timestamp nowTimestamp = Timestamp.from(nowUtc.toInstant());
 
         TransactionEntity updateTransaction = TransactionEntity.builder()
-            .id(idUpdate.uuid())
+            .id(existingTransactionId.get().getId())
             .updatedAt(nowTimestamp.toLocalDateTime())
 
             .transactionName(
@@ -200,7 +200,7 @@ public class TransactionUpdateService {
             .message(
                 messageSource.getMessage(
                      "transaction_updated_success", null, locale
-                ) + dueDate
+                )
             )
             .links(customLinks)
             .build();
