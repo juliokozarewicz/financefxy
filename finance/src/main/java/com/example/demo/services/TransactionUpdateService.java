@@ -82,13 +82,13 @@ public class TransactionUpdateService {
         Timestamp nowTimestamp = Timestamp.from(nowUtc.toInstant());
 
         TransactionEntity updateTransaction = TransactionEntity.builder()
-            .id(existingTransactionId.get().getId())
+            .id(idUpdate.uuid())
             .updatedAt(nowTimestamp.toLocalDateTime())
 
             .transactionName(
                 (
                     validatedBody.transactionName() != null &&
-                        validatedBody.transactionName().trim().isEmpty()
+                    !validatedBody.transactionName().trim().isEmpty()
                 )
                 ? validatedBody.transactionName().trim()
                 : existingTransactionId.get().getTransactionName()
@@ -97,7 +97,7 @@ public class TransactionUpdateService {
             .transactionType(
                 (
                     validatedBody.transactionType() != null &&
-                        validatedBody.transactionType().trim().isEmpty()
+                    !validatedBody.transactionType().trim().isEmpty()
                 )
                     ? validatedBody.transactionType().trim()
                     : existingTransactionId.get().getTransactionType()
@@ -106,7 +106,7 @@ public class TransactionUpdateService {
             .paymentDescription(
                 (
                     validatedBody.paymentDescription() != null &&
-                        validatedBody.paymentDescription().trim().isEmpty()
+                    !validatedBody.paymentDescription().trim().isEmpty()
                 )
                     ? validatedBody.paymentDescription().trim()
                     : existingTransactionId.get().getPaymentDescription()
@@ -125,7 +125,7 @@ public class TransactionUpdateService {
             .payee(
                 (
                     validatedBody.payee() != null &&
-                        validatedBody.payee().trim().isEmpty()
+                    !validatedBody.payee().trim().isEmpty()
                 )
                     ? validatedBody.payee().trim()
                     : existingTransactionId.get().getPayee()
@@ -134,7 +134,7 @@ public class TransactionUpdateService {
             .documentNumber(
                 (
                     validatedBody.documentNumber() != null &&
-                        validatedBody.documentNumber().trim().isEmpty()
+                    !validatedBody.documentNumber().trim().isEmpty()
                 )
                     ? validatedBody.documentNumber().trim()
                     : existingTransactionId.get().getDocumentNumber()
@@ -143,7 +143,7 @@ public class TransactionUpdateService {
             .category(
                 (
                     validatedBody.category() != null &&
-                        validatedBody.category().trim().isEmpty()
+                    !validatedBody.category().trim().isEmpty()
                 )
                     ? validatedBody.category().trim()
                     : existingTransactionId.get().getCategory()
@@ -152,7 +152,7 @@ public class TransactionUpdateService {
             .bankAccount(
                 (
                     validatedBody.bankAccount() != null &&
-                        validatedBody.bankAccount().trim().isEmpty()
+                    !validatedBody.bankAccount().trim().isEmpty()
                 )
                     ? validatedBody.bankAccount().trim()
                     : existingTransactionId.get().getBankAccount()
@@ -161,7 +161,7 @@ public class TransactionUpdateService {
             .card(
                 (
                     validatedBody.card() != null &&
-                        validatedBody.card().trim().isEmpty()
+                    !validatedBody.card().trim().isEmpty()
                 )
                     ? validatedBody.card().trim()
                     : existingTransactionId.get().getCard()
@@ -170,7 +170,7 @@ public class TransactionUpdateService {
             .notes(
                 (
                     validatedBody.notes() != null &&
-                        validatedBody.notes().trim().isEmpty()
+                    !validatedBody.notes().trim().isEmpty()
                 )
                     ? validatedBody.notes().trim()
                     : existingTransactionId.get().getNotes()
@@ -179,7 +179,7 @@ public class TransactionUpdateService {
             .status(
                 (
                     validatedBody.status() != null &&
-                        validatedBody.status().trim().isEmpty()
+                    !validatedBody.status().trim().isEmpty()
                 )
                     ? validatedBody.status().trim()
                     : existingTransactionId.get().getStatus()
