@@ -55,28 +55,6 @@ public class TransactionUpdateService {
             );
         }
 
-        // verify transaction
-        // due date
-        LocalDate dueDate = validatedBody.dueDate() != null
-            ? validatedBody.dueDate().toLocalDate()
-            : existingTransactionId.get().getDueDate();
-
-        Optional<TransactionEntity> existingTransaction = transactionRepository
-            .findByTransactionNameAndDueDate(
-                validatedBody.transactionName(),
-                dueDate
-            );
-
-        if (!existingTransaction.isEmpty()) {
-            // call custom error
-            errorHandler.customErrorThrow(
-                409,
-                messageSource.getMessage(
-                    "transaction_created_conflict", null, locale
-                )
-            );
-        }
-
         // builder new data
         ZonedDateTime nowUtc = ZonedDateTime.now(ZoneOffset.UTC);
         Timestamp nowTimestamp = Timestamp.from(nowUtc.toInstant());
@@ -120,7 +98,13 @@ public class TransactionUpdateService {
                     : existingTransactionId.get().getPaymentAmount()
             )
 
-            .dueDate(dueDate)
+            .dueDate(
+                (
+                    validatedBody.dueDate() != null
+                )
+                ? validatedBody.dueDate().toLocalDate()
+                : existingTransactionId.get().getDueDate()
+            )
 
             .payee(
                 (
@@ -191,7 +175,7 @@ public class TransactionUpdateService {
 
         // response (json)
         Map<String, String> customLinks = new LinkedHashMap<>();
-        customLinks.put("self", "/finance/transaction/update");
+        customLinks.put("self", "/finance/transaction/update/" + idUpdate.uuid());
         customLinks.put("next", "/finance/transaction/list-all");
 
         StandardResponse response = new StandardResponse.Builder()

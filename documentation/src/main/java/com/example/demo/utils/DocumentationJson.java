@@ -713,6 +713,182 @@ public class DocumentationJson {
                         }
                     },
                     # ==========================================================
+                    "/finance/transaction/update/{id}": {
+                        "put": {
+                            "summary": "Update an existing transaction",
+                            "description": "Updates the details of an existing transaction. The transaction is identified by its UUID. Only the fields provided in the request body will be updated. If a field is not provided, it will retain its current value. If the transaction with the given ID is not found, a 404 error will be returned.",
+                            "tags": [
+                                "TRANSACTION"
+                            ],
+                            "parameters": [
+                                {
+                                    "name": "id",
+                                    "in": "path",
+                                    "required": true,
+                                    "description": "UUID of the transaction to update",
+                                    "schema": {
+                                        "type": "string",
+                                        "example": "f9422414-1c9f-4016-bf13-d679ffe4c0db"
+                                    }
+                                }
+                            ],
+                            "requestBody": {
+                                "required": true,
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "type": "object",
+                                            "properties": {
+                                                "transactionName": {
+                                                    "type": "string",
+                                                    "example": "Service Payment"
+                                                },
+                                                "transactionType": {
+                                                    "type": "string",
+                                                    "example": "Debit"
+                                                },
+                                                "paymentDescription": {
+                                                    "type": "string",
+                                                    "example": "Payment for the service rendered"
+                                                },
+                                                "paymentAmount": {
+                                                    "type": "number",
+                                                    "format": "float",
+                                                    "example": 1000.00
+                                                },
+                                                "dueDate": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-03-10T14:30:00"
+                                                },
+                                                "payee": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "documentNumber": {
+                                                    "type": "string",
+                                                    "example": "1234567890"
+                                                },
+                                                "category": {
+                                                    "type": "string",
+                                                    "example": "Services"
+                                                },
+                                                "bankAccount": {
+                                                    "type": "string",
+                                                    "example": "1234-5"
+                                                },
+                                                "card": {
+                                                    "type": "string",
+                                                    "example": "9876-5432-1098-7654"
+                                                },
+                                                "notes": {
+                                                    "type": "string",
+                                                    "example": "Payment made with discount"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Pending"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "responses": {
+                                "200": {
+                                    "description": "Transaction updated successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 200
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Transaction updated successfully."
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/transaction/update/f9422414-1c9f-4016-bf13-d679ffe4c0db"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/transaction/list-all"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "404": {
+                                    "description": "Transaction not found.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Transaction not found."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "400": {
+                                    "description": "Bad request (validation error).",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 400
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "field": {
+                                                        "type": "string",
+                                                        "example": "transactionName"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Cannot be empty."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    # ==========================================================
+                    # ==========================================================
                 }
             }
         
