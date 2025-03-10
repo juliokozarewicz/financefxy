@@ -888,6 +888,119 @@ public class DocumentationJson {
                         }
                     },
                     # ==========================================================
+                    "/finance/transaction/delete/{id}": {
+                        "delete": {
+                            "summary": "Delete an existing transaction",
+                            "description": "Deletes an existing transaction identified by its UUID. If the transaction with the given ID is not found, a 404 error will be returned. Upon successful deletion, a success message is returned with appropriate response links.",
+                            "tags": [
+                                "TRANSACTION"
+                            ],
+                            "parameters": [
+                                {
+                                    "name": "id",
+                                    "in": "path",
+                                    "required": true,
+                                    "description": "UUID of the transaction to delete",
+                                    "schema": {
+                                        "type": "string",
+                                        "example": "f9422414-1c9f-4016-bf13-d679ffe4c0db"
+                                    }
+                                }
+                            ],
+                            "responses": {
+                                "200": {
+                                    "description": "Transaction deleted successfully.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 200
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "success"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Transaction deleted successfully."
+                                                    },
+                                                    "links": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "self": {
+                                                                "type": "string",
+                                                                "example": "/finance/transaction/delete/15eefecf-6092-4f5c-8597-7907fcb8ea96"
+                                                            },
+                                                            "next": {
+                                                                "type": "string",
+                                                                "example": "/finance/transaction/list-all"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "404": {
+                                    "description": "Transaction not found.",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 404
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Transaction not found."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "400": {
+                                    "description": "Bad request (validation error).",
+                                    "content": {
+                                        "application/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "statusCode": {
+                                                        "type": "integer",
+                                                        "example": 400
+                                                    },
+                                                    "statusMessage": {
+                                                        "type": "string",
+                                                        "example": "error"
+                                                    },
+                                                    "field": {
+                                                        "type": "string",
+                                                        "example": "uuid"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "The UUID is not valid."
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    # ==========================================================
                     # ==========================================================
                 }
             }
