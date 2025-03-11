@@ -5,7 +5,6 @@ import jakarta.transaction.Transactional;
 import org.hibernate.validator.constraints.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -18,12 +17,9 @@ public interface TransactionRepository extends JpaRepository<TransactionEntity, 
 
     // find name and due date
     Optional<TransactionEntity> findByTransactionNameAndDueDate(
-        String categoryName,
+        String transactionName,
         LocalDate DueDate
     );
-
-    // find name
-    Optional<TransactionEntity> findByTransactionName(String categoryName);
 
     // find by id
     Optional<TransactionEntity> findById(String id);

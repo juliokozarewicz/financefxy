@@ -1,23 +1,21 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.CategoryEntity;
+import com.example.demo.entities.TransactionEntity;
 import com.example.demo.middlewares.ErrorHandler;
-import com.example.demo.repositories.CategoryRepository;
+import com.example.demo.repositories.TransactionRepository;
 import com.example.demo.utils.StandardResponse;
-import com.example.demo.validations.CategoryCreateValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @Service
-public class CategoryListService {
+public class TransactionListService {
 
     // message source
     @Autowired
@@ -27,9 +25,9 @@ public class CategoryListService {
     @Autowired
     private ErrorHandler errorHandler;
 
-    // category entity
+    // transaction entity
     @Autowired
-    private CategoryRepository categoryRepository;
+    private TransactionRepository transactionRepository;
 
     public ResponseEntity execute() {
 
@@ -37,17 +35,17 @@ public class CategoryListService {
         Locale locale = LocaleContextHolder.getLocale();
 
         // list all categories
-        List<CategoryEntity> allCategories = categoryRepository
+        List<TransactionEntity> allTransactions = transactionRepository
             .findAll();
 
-        // response META
+        // response (meta)
         Map<String, Object> metaInfo = new LinkedHashMap<>();
-        metaInfo.put("totalItems", allCategories.size());
+        metaInfo.put("totalItems", allTransactions.size());
 
         // response (json)
         Map<String, String> customLinks = new LinkedHashMap<>();
-        customLinks.put("self", "/finance/category/list-all");
-        customLinks.put("next", "/finance/category/update/{id}");
+        customLinks.put("self", "/finance/transaction/list-all");
+        customLinks.put("next", "/finance/transaction/update/{id}");
 
         StandardResponse response = new StandardResponse.Builder()
             .statusCode(200)
@@ -57,7 +55,7 @@ public class CategoryListService {
                     "get_data_success", null, locale
                 )
             )
-            .data(allCategories)
+            .data(allTransactions)
             .meta(metaInfo)
             .links(customLinks)
             .build();
