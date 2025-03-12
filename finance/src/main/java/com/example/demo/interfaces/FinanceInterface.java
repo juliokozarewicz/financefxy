@@ -1,4 +1,4 @@
 package com.example.demo.interfaces;
 
-public class FinanceInterface {
+public interface FinanceInterface {
 }

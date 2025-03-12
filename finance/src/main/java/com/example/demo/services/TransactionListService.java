@@ -3,10 +3,13 @@ package com.example.demo.services;
 import com.example.demo.entities.TransactionEntity;
 import com.example.demo.middlewares.ErrorHandler;
 import com.example.demo.repositories.TransactionRepository;
+import com.example.demo.repositories.specifications.TransactionSpecification;
 import com.example.demo.utils.StandardResponse;
+import com.example.demo.validations.TransactionListValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.LinkedHashMap;
@@ -25,18 +28,40 @@ public class TransactionListService {
     @Autowired
     private ErrorHandler errorHandler;
 
+
     // transaction entity
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public ResponseEntity execute() {
+    public ResponseEntity execute(
+
+        TransactionListValidation transactionListValidation
+
+    ) {
 
         // language
         Locale locale = LocaleContextHolder.getLocale();
 
+        // query db
+        Specification<TransactionEntity> spec = TransactionSpecification.filter(
+            transactionListValidation.transactionName(),
+            transactionListValidation.transactionType(),
+            transactionListValidation.paymentDescription(),
+            transactionListValidation.paymentAmount(),
+            transactionListValidation.initDate(),
+            transactionListValidation.endDate(),
+            transactionListValidation.payee(),
+            transactionListValidation.documentNumber(),
+            transactionListValidation.category(),
+            transactionListValidation.bankAccount(),
+            transactionListValidation.card(),
+            transactionListValidation.notes(),
+            transactionListValidation.status()
+        );
+
         // list all categories
         List<TransactionEntity> allTransactions = transactionRepository
-            .findAll();
+            .findAll(spec);
 
         // response (meta)
         Map<String, Object> metaInfo = new LinkedHashMap<>();
