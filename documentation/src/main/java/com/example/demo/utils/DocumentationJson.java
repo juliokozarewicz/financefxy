@@ -100,6 +100,7 @@ public class DocumentationJson {
                         }
                     }
                 },
+                # ==========================================================
                 """
             )
 
@@ -554,6 +555,7 @@ public class DocumentationJson {
 
             .append(
                 """
+                # TRANSACTION
                 # ==========================================================
                 "/finance/transaction/create": {
                     "post": {
