@@ -1276,7 +1276,7 @@ public class DocumentationJson {
             )
 
             .append("}}")
-        .toString().formatted(applicationTitle);
+            .toString().formatted(applicationTitle);
 
         return docs;
 
