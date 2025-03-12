@@ -31,13 +31,12 @@ public class DocumentationJson {
                         }
                     }
                 },
+                "paths":{
                 """
             )
 
             .append(
                 """
-                "paths":{
-
                 # HELLOWORLD
                 # ==========================================================
                 "/helloworld/helloworld":{
